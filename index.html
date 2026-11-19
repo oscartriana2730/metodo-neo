@@ -629,14 +629,19 @@ input[type=range]:focus-visible{outline:3px solid var(--red);outline-offset:4px}
 .neo-sub{margin:8px 0 0;padding-left:20px;display:grid;gap:4px;font-size:16px;color:#F5F1E8}
 .neo-sub li::marker{color:#FF2E3E;font-weight:700}
 
+/* barra inferior de capítulos y contador ocultos (se navega con flechas) */
+.progress{display:none !important}
 /* --- Primer mes (inversión) --- */
-.first-month{margin-top:32px;padding:24px 26px;border-radius:var(--r-panel);border:1px solid var(--red-fill);
-  background:linear-gradient(180deg, rgba(224,30,46,.14), rgba(224,30,46,.03));box-shadow:var(--red-glow)}
-.fm-label{margin:0;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--red)}
-.fm-big{display:flex;align-items:baseline;gap:12px;margin:8px 0 10px;font-family:var(--f-display);font-size:clamp(48px,5vw,80px);line-height:.9;color:var(--ink)}
-.fm-big span{font-family:var(--f-body);font-size:18px;font-weight:600;color:var(--ink-2)}
-.fm-text{margin:0;font-size:16px;line-height:1.5;color:var(--ink-2);max-width:46ch}
-.fm-text strong{color:var(--ink)}
+.first-month{display:grid;grid-template-columns:auto 1fr;gap:6px 18px;align-items:center;margin-top:28px;padding:16px 0 0;border-top:1px solid var(--line)}
+.fm-big{display:flex;flex-direction:column;margin:0;font-family:var(--f-display);font-size:clamp(28px,2.4vw,38px);line-height:.95;color:var(--ink)}
+.fm-big span{font-family:var(--f-body);font-size:13px;font-weight:600;color:var(--ash)}
+.fm-text{margin:0;font-size:15px;line-height:1.45;color:var(--ash);max-width:44ch}
+.fm-text b{color:var(--ink-2);font-weight:600}
+/* tarjeta del precio con el acento rojo */
+.price-card.price-hot{border:1px solid var(--line-strong);overflow:hidden;
+  background:radial-gradient(ellipse 90% 55% at 50% 0%, rgba(224,30,46,.20), rgba(224,30,46,.06) 45%, rgba(224,30,46,0) 75%), linear-gradient(180deg, color-mix(in srgb, var(--coal-2) 92%, transparent), color-mix(in srgb, var(--coal) 92%, transparent));
+  box-shadow:0 0 40px -18px rgba(255,46,62,.35), 0 30px 60px -30px var(--shadow-c)}
+.price-card.price-hot::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:linear-gradient(90deg, transparent, var(--red) 50%, transparent);pointer-events:none}
 
 /* ============================================================
    RESPONSIVE
@@ -1188,12 +1193,11 @@ input[type=range]:focus-visible{outline:3px solid var(--red);outline-offset:4px}
         <h2 class="display h2" id="t-inversion">Tu inversión</h2>
         <p class="lead">Lo que pagas una vez por aprender una habilidad que te puede generar ingresos el resto de tu vida.</p>
         <div class="first-month">
-          <p class="fm-label">Tu primer mes dentro de un proyecto</p>
           <p class="fm-big">US$ 1.000<span>o más</span></p>
-          <p class="fm-text">Aun en el escenario más pesimista, tu primer mes trabajando en un proyecto no debería dejarte menos de US$ 1.000. <strong>Recuperas tu inversión desde el primer mes, y te sobra.</strong></p>
+          <p class="fm-text"><b>Tu primer mes dentro de un proyecto.</b> Aun en el escenario más pesimista, no deberías ganar menos. Recuperas tu inversión desde el primer mes.</p>
         </div>
       </div>
-      <div class="price-card glass">
+      <div class="price-card glass price-hot">
         <div class="price-top">
           <p class="label">Programa completo Método NEO</p>
         </div>
@@ -1235,12 +1239,12 @@ const CONFIG = {
   monedaInicial: "USD",
   precios: {
     USD: {
-      antes: "US$ 999",              // precio tachado · deja "" para ocultarlo
-      precio: "US$ 499",
+      antes: "US$ 1.899",              // precio tachado · deja "" para ocultarlo
+      precio: "US$ 999",
       nota: "Pago de contado en dólares",
       // opción en cuotas, visible debajo del precio
-      cuotas: "O en 2 cuotas de US$ 319 (total US$ 639)",
-      enDolares: 499                   // para calcular cuántas ventas recuperan la inversión
+      cuotas: "O en 2 cuotas de US$ 650",
+      enDolares: 999                   // para calcular cuántas ventas recuperan la inversión
     }
   },
   comisionTipica: 300,                 // comisión de ejemplo en dólares (programa de 3.000 al 10 %)
